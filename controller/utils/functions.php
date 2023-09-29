@@ -69,25 +69,6 @@ function loginUser()
   mysqli_close($conn);
 }
 
-function pageUser()
-{
-  session_start();
-
-  if (isset($_SESSION['id'])) {
-
-    primeiroAcesso();
-
-    $userId = $_SESSION['id'];
-    $userIp = $_SESSION['ip'];
-    $userEmail = $_SESSION['email'];
-    $primeiroAcesso = $_SESSION['primeiro_acesso'];
-    $nivelAcesso = $_SESSION['nivel'];
-
-  } else {
-    header("Location: error");
-  }
-}
-
 function usuarioJaCadastrado($conn, $campo, $valor)
 {
   $sql = "SELECT * FROM dashboard.usuarios WHERE $campo = ?";

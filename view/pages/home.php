@@ -1,6 +1,21 @@
 <?php
 include_once('../../controller/utils/functions.php');
-pageUser();
+session_start();
+
+if (isset($_SESSION['id'])) {
+
+
+  $userId = $_SESSION['id'];
+  $userIp = $_SESSION['ip'];
+  $userEmail = $_SESSION['email'];
+  $primeiroAcesso = $_SESSION['primeiro_acesso'];
+  $nivelAcesso = $_SESSION['nivel'];
+
+  primeiroAcesso();
+} else {
+  header("Location: error");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +33,7 @@ pageUser();
   <!-- Jquery -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
   <script type="module" src="../../controller/scripts/redefine.js"></script>
- </head>
+</head>
 
 <body class="h-full">
   <div class="min-h-full">
@@ -139,7 +154,9 @@ pageUser();
       <div class="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
         <!-- Your content -->
 
-
+        <section>
+          <div class="bg-white h-full w-full flex justify-center p-4 rounded-lg shadow-2xl">1</div>
+        </section>
       </div>
     </main>
   </div>

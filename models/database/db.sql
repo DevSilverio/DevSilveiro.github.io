@@ -18,7 +18,7 @@ CREATE TABLE dashboard.security (
     id INT PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(100) ,
     ip_cliente VARCHAR(45),
-    nivel varchar(5),
+    nivel varchar(5)
 );
 
 -- CRIANDO PROCEDURES PARA FACILITAR NO CRUD
@@ -127,7 +127,8 @@ DELIMITER //
 CREATE PROCEDURE AtualizarSenhaEPrimeiroAcesso(
     IN p_id INT,
     IN p_nova_senha VARCHAR(250),
-    IN p_novo_primeiro_acesso INT
+    IN p_novo_primeiro_acesso INT,
+    IN p_ip_cliente VARCHAR(45)
 )
 BEGIN
     UPDATE dashboard.usuarios
@@ -136,6 +137,10 @@ BEGIN
 
     UPDATE dashboard.usuarios
     SET primeiro_acesso = p_novo_primeiro_acesso
+    WHERE id = p_id;
+
+    UPDATE dashboard.usuarios
+    SET ip_cliente = p_ip_cliente
     WHERE id = p_id;
 END //
 DELIMITER ;
